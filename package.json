@@ -1,0 +1,13 @@
+{
+  "name": "shopify.sapatella",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify theme dev --store sapatella",
+    "push": "shopify theme push --store sapatella",
+    "pull": "shopify theme pull --store sapatella"
+  },
+  "repository": "https://github.com/Lucas0019/shopify.sapatella.git",
+  "author": "Lucas Xavier <lxavier.00@outlook.com>",
+  "license": "MIT"
+}
