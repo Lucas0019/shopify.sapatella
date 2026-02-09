@@ -26,14 +26,24 @@
           "settings": {
             "image": "shopify://shop_images/banner-sapatella.webp",
             "image_mobile": "shopify://shop_images/banner-sapattela-mobile.webp",
-            "alt": "Banner Super Bazar",
-            "link": ""
+            "alt": "Banner Compre e Ganhe",
+            "link": "/compre-e-ganhe"
+          }
+        },
+        "slide_KRpT6C": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-full-fitt.png",
+            "image_mobile": "shopify://shop_images/card-image-brilhar-verao.png",
+            "alt": "Banner Descubra",
+            "link": "/descubra"
           }
         }
       },
       "block_order": [
         "slide_zNYFAr",
-        "slide_KhW9Bw"
+        "slide_KhW9Bw",
+        "slide_KRpT6C"
       ],
       "name": "Hero Slider",
       "settings": {}
