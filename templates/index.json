@@ -9,72 +9,64 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/banner-hero-wicomm.png",
-        "image_overlay_opacity": 0,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "image_with_text_4ECYWx": {
-      "type": "image-with-text",
+    "slideshow_GTiQwQ": {
+      "type": "slideshow",
       "blocks": {
-        "heading_A3xYUK": {
-          "type": "heading",
+        "slide_gdBjrY": {
+          "type": "slide",
           "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/banner-hero-wicomm_00584a55-3f96-4373-975f-d3d55a214317.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
           }
         },
-        "text_e88TbU": {
-          "type": "text",
+        "slide_YyJjWT": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_H9Aw7M": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false
+            "image": "shopify://shop_images/banner-hero-wicomm_00584a55-3f96-4373-975f-d3d55a214317.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
           }
         }
       },
       "block_order": [
-        "heading_A3xYUK",
-        "text_e88TbU",
-        "button_H9Aw7M"
+        "slide_gdBjrY",
+        "slide_YyJjWT"
       ],
-      "name": "t:sections.image-with-text.presets.name",
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
         "image_behavior": "none",
-        "content_layout": "no-overlap",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     }
   },
   "order": [
-    "image_banner",
-    "image_with_text_4ECYWx"
+    "slideshow_GTiQwQ"
   ]
 }
