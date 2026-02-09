@@ -1,0 +1,176 @@
+{{ 'article-detail.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="article-detail"
+  data-section-id="{{ section.id }}"
+  data-section-type="article-detail"
+
+>
+  <div class="article-detail__container page-width">
+
+    <div class="article-detail__grid {% if section.settings.layout == 'image-right' %}article-detail__grid--inverted{% endif %}">
+
+      <!-- Conteúdo -->
+      <div class="article-detail__content-col">
+        <div
+          class="article-detail__content"
+          style="max-width: {{ section.settings.content_max_width }}px;"
+        >
+          {% if section.settings.title != blank %}
+            <h2 class="article-detail__title">
+              {{ section.settings.title }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.text != blank %}
+            <div class="article-detail__text">
+              {{ section.settings.text }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+            <div class="article-detail__button-wrapper">
+              <a
+                href="{{ section.settings.button_link }}"
+                class="article-detail__button button"
+              >
+                {{ section.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Imagem -->
+      <div class="article-detail__image-col">
+        <div class="article-detail__image-wrapper">
+
+          {% if section.settings.image != blank %}
+            {% liquid
+              assign image_sizes = '(min-width: 1024px) 50vw, 100vw'
+              assign image_class = 'article-detail__image'
+              assign image_alt = section.settings.image.alt | escape
+
+              if section.settings.enable_lazy_loading
+                assign loading = 'lazy'
+              else
+                assign loading = 'eager'
+              endif
+            %}
+
+            {{
+              section.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                loading: loading,
+                width: section.settings.image.width,
+                height: section.settings.image.height,
+                sizes: image_sizes,
+                widths: '375,550,750,1100,1200,1500',
+                alt: image_alt,
+                class: image_class,
+                decoding: 'async'
+            }}
+
+          {% else %}
+            <div class="article-detail__placeholder">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Article Detail",
+  "tag": "section",
+  "class": "section-article-detail",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Sobre a Sapatella"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Oi, a gente já se conhece? Muito prazer, Sapatella!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Botão (Opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão",
+      "default": "Conheça mais"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Imagem"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Posição da imagem",
+      "options": [
+        { "value": "image-right", "label": "Imagem à direita" },
+        { "value": "image-left", "label": "Imagem à esquerda" }
+      ],
+      "default": "image-right"
+    },
+    {
+      "type": "header",
+      "content": "Configurações avançadas"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazy_loading",
+      "label": "Ativar lazy loading",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Largura máxima do conteúdo",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "default": 600,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article Detail",
+      "category": "Conteúdo"
+    }
+  ]
+}
+{% endschema %}

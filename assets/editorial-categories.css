@@ -1,7 +1,6 @@
 .editorial-categories {
   padding: 48px 0;
   position: relative;
-  margin-bottom: 48px;
   background-color: var(--editorial-categories-bg, #f5f5f5);
 }
 
