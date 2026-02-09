@@ -2342,12 +2342,76 @@ input[type='checkbox'] {
 /* Main Header Layout */
 .header-wrapper {
   display: block;
-  position: relative;
-  background-color: rgb(var(--color-background));
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: unset;
+  transition: background-color var(--duration-short) ease;
 }
 
+.header-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px; 
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.15) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  z-index: -1;
+}
+
+.header-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.15) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  z-index: -1;
+}
+
+.header-wrapper .header__inline-menu ul li a,
+.header-wrapper .header__icons .header__icon{
+  filter: invert(1) sepia(1) grayscale(1) brightness(200%);
+}
+
+.header-wrapper:hover img {
+  filter: invert(1) sepia(1) grayscale(1) brightness(200%);
+}
+
+
+.header-wrapper:hover .header__inline-menu ul li a,
+.header-wrapper:hover .header__icons .header__icon {
+  filter: invert(0) sepia(0) grayscale(0) brightness(100%);
+}
+
+.header-wrapper .header__inline-menu ul li a {
+  font-weight: 500;
+}
+
+
+
+
 .header-wrapper--border-bottom {
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .header {
@@ -2932,6 +2996,10 @@ details-disclosure > details {
 }
 
 .gradient {
+  transition: background .3s ease-in-out;
+}
+
+.gradient:hover {
   background: rgb(var(--color-background));
   background: var(--gradient-background);
   background-attachment: fixed;
