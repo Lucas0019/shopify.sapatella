@@ -1,0 +1,74 @@
+
+{{ 'hero-slider.css' | asset_url | stylesheet_tag }}
+{{ 'hero-slider.js' | asset_url | script_tag }}
+
+<section class="hero-slider" data-slider>
+  <div class="hero-slider__track" data-slider-track>
+    {% for block in section.blocks %}
+      <a
+        href="{{ block.settings.link }}"
+        class="hero-slider__slide"
+        data-slide
+        {{ block.shopify_attributes }}
+      >
+        <picture>
+          {% if block.settings.image_mobile != blank %}
+            <source
+              media="(max-width: 768px)"
+              srcset="{{ block.settings.image_mobile | image_url: width: 900 }}"
+            >
+          {% endif %}
+          <img
+            src="{{ block.settings.image | image_url: width: 2000 }}"
+            alt="{{ block.settings.alt }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+          >
+        </picture>
+
+ 
+      </a>
+    {% endfor %}
+  </div>
+
+<div class="hero-slider__arrows">
+  {% render 'slider-arrows',
+    direction: 'prev',
+    class: 'hero-slider__arrow',
+    label: 'Banner anterior'
+  %}
+
+  {% render 'slider-arrows',
+    direction: 'next',
+    class: 'hero-slider__arrow',
+    label: 'Próximo banner'
+  %}
+</div>
+
+
+  <!-- Dots -->
+  <div class="hero-slider__dots" data-dots></div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Banner",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagem desktop" },
+        { "type": "image_picker", "id": "image_mobile", "label": "Imagem mobile" },
+        { "type": "text", "id": "alt", "label": "Alt da imagem" },
+        { "type": "url", "id": "link", "label": "Link do banner" },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider"
+    }
+  ]
+}
+{% endschema %}

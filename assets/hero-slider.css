@@ -1,0 +1,144 @@
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 160px;
+  background: linear-gradient(0deg, #161616 0%, rgba(22, 22, 22, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-slider__track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.hero-slider__slide {
+  position: relative;
+  min-width: 100%;
+  display: block;
+}
+
+.hero-slider__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-slider__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+}
+
+.hero-slider__tag {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.hero-slider__cta {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #e91e63;
+  color: #fff;
+}
+
+.hero-slider__arrows {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.slider-arrow {
+  pointer-events: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.slider-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.slider-arrow--prev {
+  left: 8px;
+}
+
+.slider-arrow--next {
+  right: 8px;
+}
+
+@media (min-width: 768px) {
+  .slider-arrow--prev {
+    left: 44px;
+  }
+
+  .slider-arrow--next {
+    right: 44px;
+  }
+}
+
+.hero-slider__dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.hero-slider__dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  animation: bubble 0.6s;
+}
+
+.hero-slider__dots button.is-active {
+  width: 16px;
+  background: #e91e63;
+}
+
+@keyframes bubble {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,19 @@
+{% comment %}
+  Params:
+  - direction: prev | next
+  - class: classes extras
+  - label: aria-label
+{% endcomment %}
+
+<button
+  type="button"
+  class="slider-arrow slider-arrow--{{ direction }} {{ class }}"
+  data-{{ direction }}
+  aria-label="{{ label | default: direction }}"
+>
+  {% if direction == 'prev' %}
+    {{ 'icon-arrow-left.svg' | inline_asset_content }}
+  {% else %}
+    {{ 'icon-arrow-right.svg' | inline_asset_content }}
+  {% endif %}
+</button>
