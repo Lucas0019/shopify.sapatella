@@ -1,0 +1,142 @@
+{{ 'featured-cta.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cta-bg: {{ section.settings.background }};
+    --cta-text: {{ section.settings.text_color }};
+    --cta-button-bg: {{ section.settings.button_background }};
+    --cta-button-text: {{ section.settings.button_text_color }};
+  }
+</style>
+
+<section
+  class="featured-cta"
+  aria-labelledby="featured-cta-title-{{ section.id }}"
+>
+  <div class="featured-cta__container page-width">
+
+    <div class="featured-cta__content">
+      {% if section.settings.subtitle != blank %}
+        <p class="featured-cta__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.title != blank %}
+        <h2
+          id="featured-cta-title-{{ section.id }}"
+          class="featured-cta__title"
+        >
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="featured-cta__description">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.link != blank and section.settings.cta_label != blank %}
+        <a
+          href="{{ section.settings.link }}"
+          class="featured-cta__button"
+          aria-label="{{ section.settings.cta_label | escape }}"
+        >
+          {{ section.settings.cta_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.image != blank and section.settings.link != blank %}
+      <a
+        href="{{ section.settings.link }}"
+        class="featured-cta__image-wrapper"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="600"
+          height="600"
+        >
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA com imagem destacada",
+  "tag": "section",
+  "class": "section-featured-cta",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Cor de fundo",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do texto",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Cor do botão",
+      "default": "#e91e63"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do texto do botão",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Pra brilhar no verão"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "É a sua cara"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descrição",
+      "default": "As Sandálias Birken são uma escolha de calçado atemporal e icônica, conhecida por seu conforto, qualidade e design diferenciado."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto do botão",
+      "default": "É a minha cara"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link de destino"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA com imagem"
+    }
+  ]
+}
+{% endschema %}

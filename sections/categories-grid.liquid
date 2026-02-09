@@ -1,0 +1,94 @@
+{{ 'categories-grid.css' | asset_url | stylesheet_tag }}
+{{ 'categories-grid.js' | asset_url | script_tag }}
+
+<section class="categories-grid page-width" aria-label="Compre por categoria">
+  <div class="categories-grid__container">
+
+    {% if section.settings.title != blank %}
+      <h2 class="categories-grid__title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div class="categories-grid__list">
+      {% for block in section.blocks %}
+        <a
+          href="{{ block.settings.link }}"
+          class="categories-grid__item"
+          {{ block.shopify_attributes }}
+        >
+          <div class="categories-grid__image-wrapper">
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt="{{ block.settings.label | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            {% endif %}
+          </div>
+
+          <span class="categories-grid__label">
+            {{ block.settings.label }}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Categorias em Grid",
+  "tag": "section",
+  "class": "section-categories-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Compre por categoria"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoria",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Nome da categoria",
+          "default": "Categoria"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link da categoria"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Grid de Categorias",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Bolsas" } },
+        { "type": "category", "settings": { "label": "Tênis" } },
+        { "type": "category", "settings": { "label": "Rasteiras" } },
+        { "type": "category", "settings": { "label": "Plataformas" } },
+        { "type": "category", "settings": { "label": "Botas" } },
+        { "type": "category", "settings": { "label": "Sapatilhas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

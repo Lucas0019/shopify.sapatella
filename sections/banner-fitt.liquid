@@ -1,0 +1,183 @@
+{{ 'banner-fitt.css' | asset_url | stylesheet_tag }}
+
+
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --banner-ratio-mobile: {{ section.settings.aspect_ratio_mobile }}%;
+    --banner-ratio-desktop: {{ section.settings.aspect_ratio_desktop }}%;
+  }
+</style>
+
+<section
+  class="banner-fitt banner-fitt--{{ section.settings.container_width }}"
+  role="banner"
+  aria-label="{{ section.settings.alt_text | default: 'Banner promocional' }}"
+>
+  <div class="banner-fitt__container">
+
+    {% if is_clickable %}
+      <a
+        href="{{ section.settings.link }}"
+        class="banner-fitt__link"
+        aria-label="{{ section.settings.alt_text | escape }}"
+      >
+    {% endif %}
+
+      <div class="banner-fitt__media">
+        {% assign fallback_image = section.settings.image_desktop
+          | default: section.settings.image_tablet
+          | default: section.settings.image_mobile %}
+
+        {% if fallback_image != blank %}
+          <picture>
+            {% if section.settings.image_mobile %}
+              <source
+                media="(max-width: 767px)"
+                srcset="{{ section.settings.image_mobile | image_url: width: 750 }}"
+              >
+            {% endif %}
+
+            {% if section.settings.image_tablet %}
+              <source
+                media="(min-width: 768px) and (max-width: 1023px)"
+                srcset="{{ section.settings.image_tablet | image_url: width: 1024 }}"
+              >
+            {% endif %}
+
+            {% if section.settings.image_desktop %}
+              <source
+                media="(min-width: 1024px)"
+                srcset="{{ section.settings.image_desktop | image_url: width: 2000 }}"
+              >
+            {% endif %}
+
+            <img
+              src="{{ fallback_image | image_url: width: 2000 }}"
+              alt="{{ section.settings.alt_text | escape }}"
+              width="2000"
+              height="{{ 2000 | divided_by: fallback_image.aspect_ratio | round }}"
+              loading="{% if loading_attr %}lazy{% else %}eager{% endif %}"
+              decoding="async"
+              class="banner-fitt__image"
+            >
+          </picture>
+        {% else %}
+          <div class="banner-fitt__placeholder">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+
+    {% if is_clickable %}
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner Fitt",
+  "tag": "section",
+  "class": "section-banner-fitt",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagens"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Imagem Desktop",
+      "info": "Recomendado: 2000x857px (21:9)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_tablet",
+      "label": "Imagem Tablet (opcional)",
+      "info": "Recomendado: 1024x576px (16:9)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Imagem Mobile (opcional)",
+      "info": "Recomendado: 750x750px (1:1)"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Texto alternativo (ALT)",
+      "default": "Banner promocional",
+      "info": "Importante para SEO e acessibilidade"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link do banner",
+      "info": "Se vazio, o banner não será clicável"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Largura do container",
+      "options": [
+        {
+          "value": "full",
+          "label": "Largura total"
+        },
+        {
+          "value": "contained",
+          "label": "Limitado à página"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "header",
+      "content": "Performance"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazy_loading",
+      "label": "Ativar lazy loading",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio_mobile",
+      "label": "Proporção Mobile",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio_desktop",
+      "label": "Proporção Desktop",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "default": 45,
+      "unit": "%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Fitt",
+      "category": "Imagem"
+    }
+  ]
+}
+{% endschema %}
+
