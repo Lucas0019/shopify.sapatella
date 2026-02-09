@@ -1,0 +1,112 @@
+.editorial-categories {
+  padding: 48px 0;
+  position: relative;
+  margin-bottom: 48px;
+  background-color: var(--editorial-categories-bg, #f5f5f5);
+}
+
+.editorial-categories__grid {
+  display: grid;
+  gap: 20px;
+}
+
+.editorial-categories__card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  gap: 24px;
+}
+
+.editorial-categories__image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.editorial-categories__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.editorial-categories__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.editorial-categories__content[data-align-content="center"] {
+  align-items: center;
+  text-align: center;
+}
+
+.editorial-categories__content[data-align-content="start"] {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.editorial-categories__content[data-align-content="end"] {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.editorial-categories__card--content-top .editorial-categories__content {
+}
+
+.editorial-categories__title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media screen and (min-width: 48rem) {
+  .editorial-categories__title {
+    font-size: 20px;
+    color: #4f4f4f;
+  }
+}
+
+.editorial-categories__description {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4f4f4f;
+  margin-bottom: 20px;
+  max-width: 80%;
+}
+
+.editorial-categories__cta {
+  font-size: 16px;
+  color: #4f4f4f;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s ease;
+}
+
+.editorial-categories__card:hover img {
+  transform: scale(1.05);
+}
+
+.editorial-categories__card:hover .editorial-categories__cta {
+  gap: 10px;
+}
+
+@media screen and (max-width: 47.99rem) {
+  .editorial-categories__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .editorial-categories__grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+
+  .editorial-categories__card {
+    margin-top: var(--desktop-margin-top, 0px);
+  }
+}
