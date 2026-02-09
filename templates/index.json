@@ -9,64 +9,37 @@
  */
 {
   "sections": {
-    "slideshow_GTiQwQ": {
-      "type": "slideshow",
+    "hero_slider_4BxmHh": {
+      "type": "hero-slider",
       "blocks": {
-        "slide_gdBjrY": {
+        "slide_zNYFAr": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner-hero-wicomm_00584a55-3f96-4373-975f-d3d55a214317.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "image": "shopify://shop_images/banner-hero-wicomm.png",
+            "image_mobile": "shopify://shop_images/banner-sapattela-mobile.webp",
+            "alt": "Banner Super Bazar",
+            "link": "/super-bazar"
           }
         },
-        "slide_YyJjWT": {
+        "slide_KhW9Bw": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner-hero-wicomm_00584a55-3f96-4373-975f-d3d55a214317.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "image": "shopify://shop_images/banner-sapatella.webp",
+            "image_mobile": "shopify://shop_images/banner-sapattela-mobile.webp",
+            "alt": "Banner Super Bazar",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "slide_gdBjrY",
-        "slide_YyJjWT"
+        "slide_zNYFAr",
+        "slide_KhW9Bw"
       ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout": "full_bleed",
-        "slide_height": "large",
-        "slider_visual": "dots",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
-      }
+      "name": "Hero Slider",
+      "settings": {}
     }
   },
   "order": [
-    "slideshow_GTiQwQ"
+    "hero_slider_4BxmHh"
   ]
 }
