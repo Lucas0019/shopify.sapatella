@@ -1,1 +1,128 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "payment_qMnR3q": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/visa.png",
+            "label": "Logo Visa"
+          }
+        },
+        "payment_74C3ix": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/mastercard.png",
+            "label": "Logo Mastercard"
+          }
+        },
+        "payment_Jhr663": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/hipercard.png",
+            "label": "Logo Hipercard"
+          }
+        },
+        "payment_RGaXB4": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/pix.png",
+            "label": "Logo Pix"
+          }
+        },
+        "payment_cQYhVF": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/amex.png",
+            "label": "Logo Amex"
+          }
+        },
+        "payment_qkTYhk": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/elo.png",
+            "label": "Logo Elo"
+          }
+        },
+        "payment_yFpwgj": {
+          "type": "payment",
+          "settings": {
+            "icon": "shopify://shop_images/boleto.png",
+            "label": "Logo Boleto"
+          }
+        },
+        "social_AMtnL9": {
+          "type": "social",
+          "settings": {
+            "icon": "shopify://shop_images/FacebookLogo.svg",
+            "link": "/link",
+            "label": "Logo Clicável do Facebook"
+          }
+        },
+        "social_HUjCwL": {
+          "type": "social",
+          "settings": {
+            "icon": "shopify://shop_images/WhatsappLogo.svg",
+            "link": "/link",
+            "label": "Logo do WhatsApp"
+          }
+        },
+        "social_jM8ipD": {
+          "type": "social",
+          "settings": {
+            "icon": "shopify://shop_images/InstagramLogo.svg",
+            "link": "https://www.instagram.com/sapatellaoficial",
+            "label": "Logo Clicável do Instagram"
+          }
+        }
+      },
+      "block_order": [
+        "payment_qMnR3q",
+        "payment_74C3ix",
+        "payment_Jhr663",
+        "payment_RGaXB4",
+        "payment_cQYhVF",
+        "payment_qkTYhk",
+        "payment_yFpwgj",
+        "social_AMtnL9",
+        "social_HUjCwL",
+        "social_jM8ipD"
+      ],
+      "settings": {
+        "brand_logo": "shopify://shop_images/logo-black-sapatella.png",
+        "brand_name": "sapatella",
+        "title_sobre_nos": "SOBRE NÓS",
+        "title_minha_conta": "MINHA CONTA",
+        "title_suporte": "SUPORTE E POLÍTICAS",
+        "title_pagamentos": "FORMAS DE PAGAMENTO",
+        "menu_sobre_nos": "footer-sobre-n-s",
+        "menu_minha_conta": "footer-minha-conta",
+        "menu_suporte": "footer-suporte-e-politicas",
+        "newsletter_enable": true,
+        "newsletter_title": "<p>Cadastre-se e ganhe <strong>R$20 OFF</strong> na sua primeira compra!</p>",
+        "newsletter_button_label": "Cadastrar",
+        "legal_text": "Somos Sonho LTA - Estrada do Campo D'areia, 182 - Pechincha - Rio de Janeiro/RJ - CEP: 22.743-310",
+        "cnpj_text": "CNPJ:28.445.729/0081-75 | © 2024 Todos dos direitos reservados",
+        "show_social": true,
+        "wicomm_image": "shopify://shop_images/logo-wicomm.png",
+        "wicomm_link": "https://www.wicomm.com.br/",
+        "margin_top": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
