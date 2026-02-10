@@ -47,9 +47,58 @@
       ],
       "name": "Hero Slider",
       "settings": {}
+    },
+    "benefits_bar_eHymdh": {
+      "type": "benefits-bar",
+      "blocks": {
+        "benefit_NmCkkN": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon": "shopify://shop_images/benefits-bar-icon-1.svg",
+            "text": "Frete Grátis p/ Sudeste"
+          }
+        },
+        "benefit_tbncPG": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon": "shopify://shop_images/benefits-bar-icon-2.svg",
+            "text": "R$ 20 off na 1ª compra"
+          }
+        },
+        "benefit_6dgXNB": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon": "shopify://shop_images/benefits-bar-icon-3.svg",
+            "text": "Pague via PIX"
+          }
+        },
+        "benefit_WFz7FV": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon": "shopify://shop_images/benefits-bar-icon-4.svg",
+            "text": "Parcele em até 6x sem juros"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_NmCkkN",
+        "benefit_tbncPG",
+        "benefit_6dgXNB",
+        "benefit_WFz7FV"
+      ],
+      "name": "Barra de Benefícios",
+      "settings": {
+        "background": "#f5f5f5",
+        "text_color": "#4F4F4F"
+      }
     }
   },
   "order": [
-    "hero_slider_4BxmHh"
+    "hero_slider_4BxmHh",
+    "benefits_bar_eHymdh"
   ]
 }
