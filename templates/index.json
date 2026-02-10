@@ -160,11 +160,28 @@
       "settings": {
         "title": "Compre por categoria"
       }
+    },
+    "featured_cta_zfmrij": {
+      "type": "featured-cta",
+      "name": "CTA com imagem",
+      "settings": {
+        "background": "#F5F5F5",
+        "text_color": "#161616",
+        "button_background": "#e91e63",
+        "button_text_color": "#ffffff",
+        "subtitle": "",
+        "title": "Pra brilhar no verão",
+        "description": "As Sandálias Birkens são uma escolha de calçado atemporal e icônica, conhecida por seu conforto, qualidade e design diferenciado.",
+        "cta_label": "",
+        "link": "",
+        "image": "shopify://shop_images/card-image-brilhar-verao.png"
+      }
     }
   },
   "order": [
     "hero_slider_4BxmHh",
     "benefits_bar_eHymdh",
-    "categories_grid_qpzWx7"
+    "categories_grid_qpzWx7",
+    "featured_cta_zfmrij"
   ]
 }
