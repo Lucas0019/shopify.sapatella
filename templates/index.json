@@ -126,22 +126,25 @@
         "category_7rGEhQ": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/categorie-4_b8b52d52-e5b6-4163-95f1-8a88a4dd1fb0.png",
             "label": "Plataformas",
-            "link": ""
+            "link": "/categoria-04"
           }
         },
         "category_U4DEkE": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/categorie-5_7b1643ee-a72d-47f3-b877-dd2cf769765b.png",
             "label": "Botas",
-            "link": ""
+            "link": "/categoria-05"
           }
         },
         "category_U8myyf": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/categorie-6_3161d710-b7b2-49c4-a265-397fef35508c.png",
             "label": "Sapatilhas",
-            "link": ""
+            "link": "/categoria-06"
           }
         }
       },
