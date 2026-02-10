@@ -229,6 +229,34 @@
       "settings": {
         "background": "#f5f5f5"
       }
+    },
+    "banner_fitt_hViTk4": {
+      "type": "banner-fitt",
+      "name": "Banner Fitt",
+      "settings": {
+        "image_desktop": "shopify://shop_images/banner-full-fitt.png",
+        "image_mobile": "shopify://shop_images/banner-full-fitt.png",
+        "alt_text": "Banner promocional",
+        "link": "",
+        "container_width": "full",
+        "enable_lazy_loading": true,
+        "aspect_ratio_mobile": 100,
+        "aspect_ratio_desktop": 45
+      }
+    },
+    "article_detail_9WU3M3": {
+      "type": "article-detail",
+      "name": "Article Detail",
+      "settings": {
+        "title": "Sobre a Sapatella",
+        "text": "<p>Oi, a gente já se conhece? Muito prazer, Sapatella! Somos uma Marca de moda que oferece sapatos e acessórios feitos para te encantar. Aqui tem atenção de verdade, produtos com o seu jeito e ritmo. Chega mais, fique à vontade. Queremos ver você confortável e livre para ser como quiser e ocupar o espaço que bem entender. O que nos une e contagia é a vontade de brilhar e ser feliz. Mais que mulheres, somos amigas. Sapatella. Vamos juntas?</p>",
+        "button_text": "Conheça mais",
+        "button_link": "",
+        "image": "shopify://shop_images/card-component.png",
+        "layout": "image-left",
+        "enable_lazy_loading": true,
+        "content_max_width": 460
+      }
     }
   },
   "order": [
@@ -236,6 +264,8 @@
     "benefits_bar_eHymdh",
     "categories_grid_qpzWx7",
     "featured_cta_zfmrij",
-    "editorial_categories_Am68tt"
+    "editorial_categories_Am68tt",
+    "banner_fitt_hViTk4",
+    "article_detail_9WU3M3"
   ]
 }
