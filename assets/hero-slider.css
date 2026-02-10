@@ -1,6 +1,7 @@
 .hero-slider {
   position: relative;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .hero-slider::after {
@@ -61,6 +62,12 @@
   pointer-events: none;
 }
 
+@media screen and (max-width: 64rem) {
+  .hero-slider__arrows {
+    display: none;
+  }
+}
+
 .slider-arrow {
   pointer-events: auto;
   position: absolute;
@@ -90,6 +97,10 @@
 
 .slider-arrow--next {
   right: 8px;
+}
+
+[data-slider] {
+  touch-action: pan-y;
 }
 
 @media (min-width: 768px) {
