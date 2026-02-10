@@ -223,6 +223,9 @@
       {%- endif -%}
     {%- endif -%}
 
+
+
+
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -248,6 +251,7 @@
         {%- endif -%}
       </div>
       {% render 'header-search', input_id: 'Search-In-Modal' %}
+      
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -260,11 +264,15 @@
               {%- if customer and customer.has_avatar? -%}
                 {{ customer | avatar }}
               {%- else -%}
-                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                <span class="svg-wrapper">
+                  {{ 'user.svg' | inline_asset_content }}
+                </span>
               {%- endif -%}
             </account-icon>
           {%- else -%}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            <span class="svg-wrapper">
+              {{ 'user.svg' | inline_asset_content }}
+            </span>
           {%- endif -%}
           <span class="visually-hidden">
             {%- liquid
@@ -278,6 +286,13 @@
         </a>
       {%- endif -%}
 
+      <a href="/pages/wishlist" class="header__icon header__icon--wishlist link focus-inset">
+        <span class="svg-wrapper">
+          {{ 'heart.svg' | inline_asset_content }}
+        </span>
+        <span class="visually-hidden">Wishlist</span>
+      </a>
+
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
@@ -286,11 +301,9 @@
       {%- endfor -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {% if cart == empty %}
-          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-        {% else %}
-          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-        {% endif %}
+        <span class="svg-wrapper">
+          {{ 'shopping-cart.svg' | inline_asset_content }}
+        </span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">

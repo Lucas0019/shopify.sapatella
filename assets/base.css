@@ -126,8 +126,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding: 24px 0;
   }
 
   .page-width--narrow {
@@ -2376,8 +2375,7 @@ input[type='checkbox'] {
   z-index: -1;
 }
 
-.header-wrapper .header__inline-menu ul li a,
-.header-wrapper .header__icons .header__icon{
+.header-wrapper .header__inline-menu ul li a {
   filter: invert(1) sepia(1) grayscale(1) brightness(200%);
 }
 
@@ -2385,15 +2383,55 @@ input[type='checkbox'] {
   filter: invert(1) sepia(1) grayscale(1) brightness(200%);
 }
 
-
-.header-wrapper:hover .header__inline-menu ul li a,
 .header-wrapper:hover .header__icons .header__icon {
+  filter: invert(1) sepia(1) grayscale(1) brightness(200%);
+}
+
+
+.header-wrapper:hover .header__inline-menu ul li a {
   filter: invert(0) sepia(0) grayscale(0) brightness(100%);
 }
 
 .header-wrapper .header__inline-menu ul li a {
   font-weight: 500;
 }
+
+.header-wrapper:hover #HeaderMenu-off {
+  color: #CF215B;
+  font-weight: 600;
+}
+
+.header-wrapper .header__icon svg.icon-hamburger,
+.header-wrapper .header__icon svg.icon-closeicon-hamburger {
+  filter: invert(1) sepia(1) grayscale(1) brightness(200%);
+}
+
+
+.header-wrapper:hover .header__icon svg.icon-hamburger,
+.header-wrapper:hover .header__icon svg.icon-closeicon-hamburger {
+  filter: invert(0) sepia(0) grayscale(0) brightness(100%);
+}
+
+.header-wrapper .xb-wishlist-header-auto-container .xb-wishlist-header-auto__svg svg {
+  filter: invert(1) sepia(1) grayscale(1) brightness(200%);
+}
+
+.header-wrapper:hover .xb-wishlist-header-auto-container .xb-wishlist-header-auto__svg svg {
+  filter: invert(0) sepia(0) grayscale(0) brightness(100%);
+}
+
+.header__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.header__icon {
+  color: var(--color-foreground);
+}
+
+
+
+
 
 
 
@@ -2847,6 +2885,12 @@ details[open] > .header__submenu {
   text-decoration: none;
   color: rgba(var(--color-foreground), 0.75);
 }
+
+.header__menu-item#HeaderMenu-off {
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
 
 .header__menu-item:hover {
   color: rgb(var(--color-foreground));
