@@ -176,12 +176,66 @@
         "link": "/link",
         "image": "shopify://shop_images/card-image-brilhar-verao.png"
       }
+    },
+    "editorial_categories_Am68tt": {
+      "type": "editorial-categories",
+      "blocks": {
+        "category_67VmMY": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/editorial-card-1.png",
+            "content_position": "content-top",
+            "align_content_position": "start",
+            "title": "Rasteiras & Birkens",
+            "description": "A categoria de Sandália Rasteira da Sapatella é um verdadeiro paraíso para os amantes de conforto e estilo.",
+            "cta_label": "Eu quero",
+            "link": "/link",
+            "desktop_margin_top": 0
+          }
+        },
+        "category_Fgc9e6": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/editorial-card-2.png",
+            "content_position": "image-top",
+            "align_content_position": "center",
+            "title": "",
+            "description": "",
+            "cta_label": "Sandálias",
+            "link": "",
+            "desktop_margin_top": 0
+          }
+        },
+        "category_ARKnJY": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/editorial-card-3.png",
+            "content_position": "image-top",
+            "align_content_position": "center",
+            "title": "Tênis",
+            "description": "Os tênis femininos se tornaram um item básico na moda e nos calçados do dia a dia.",
+            "cta_label": "Conferir",
+            "link": "",
+            "desktop_margin_top": 0
+          }
+        }
+      },
+      "block_order": [
+        "category_67VmMY",
+        "category_Fgc9e6",
+        "category_ARKnJY"
+      ],
+      "name": "Categorias editorial",
+      "settings": {
+        "background": "#f5f5f5"
+      }
     }
   },
   "order": [
     "hero_slider_4BxmHh",
     "benefits_bar_eHymdh",
     "categories_grid_qpzWx7",
-    "featured_cta_zfmrij"
+    "featured_cta_zfmrij",
+    "editorial_categories_Am68tt"
   ]
 }
