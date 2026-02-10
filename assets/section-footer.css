@@ -225,6 +225,10 @@
   flex-direction: column;
 }
 
+.footer-legal {
+  font-style: normal;
+}
+
 .footer-bottom__content p {
   margin: 0;
   line-height: 20px;

@@ -2,7 +2,11 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag }}
 {{ 'hero-slider.js' | asset_url | script_tag }}
 
-<section class="hero-slider" data-slider>
+<section class="hero-slider"   
+  data-slider
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+>
   <div class="hero-slider__track" data-slider-track>
     {% for block in section.blocks %}
       <a
@@ -53,6 +57,23 @@
 {
   "name": "Hero Slider",
   "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Ativar autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Tempo entre slides (segundos)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    }
+  ],
   "blocks": [
     {
       "type": "slide",
