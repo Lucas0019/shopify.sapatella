@@ -95,10 +95,73 @@
         "background": "#f5f5f5",
         "text_color": "#4F4F4F"
       }
+    },
+    "categories_grid_qpzWx7": {
+      "type": "categories-grid",
+      "blocks": {
+        "category_TtDBGL": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/categorie-1_1e377b32-d061-49be-a1a7-90305e9fdaf0.png",
+            "label": "Bolsas",
+            "link": "/categoria-01"
+          }
+        },
+        "category_amhfV8": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/categorie-2_4d8cde12-02c6-4e17-8eac-1a9b4c54f503.png",
+            "label": "Tênis",
+            "link": "/categoria-02"
+          }
+        },
+        "category_YA7nhU": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/categorie-3_bf288a71-b77a-4e58-967d-16260c7a32d2.png",
+            "label": "Rasteiras",
+            "link": "/categoria-03"
+          }
+        },
+        "category_7rGEhQ": {
+          "type": "category",
+          "settings": {
+            "label": "Plataformas",
+            "link": ""
+          }
+        },
+        "category_U4DEkE": {
+          "type": "category",
+          "settings": {
+            "label": "Botas",
+            "link": ""
+          }
+        },
+        "category_U8myyf": {
+          "type": "category",
+          "settings": {
+            "label": "Sapatilhas",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_TtDBGL",
+        "category_amhfV8",
+        "category_YA7nhU",
+        "category_7rGEhQ",
+        "category_U4DEkE",
+        "category_U8myyf"
+      ],
+      "name": "Grid de Categorias",
+      "settings": {
+        "title": "Compre por categoria"
+      }
     }
   },
   "order": [
     "hero_slider_4BxmHh",
-    "benefits_bar_eHymdh"
+    "benefits_bar_eHymdh",
+    "categories_grid_qpzWx7"
   ]
 }
