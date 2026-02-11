@@ -1,0 +1,287 @@
+{% comment %}
+  Hero Product Slider Component for Shopify Dawn Theme
+  Displays a hero image on the left and product slider on the right
+{% endcomment %}
+
+{{ 'hero-product-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="hero-product-slider-section section-{{ section.id }}-padding">
+  <div class="hero-product-slider-content">
+    
+    <div class="hero-product-slider-grid">
+      <!-- Hero Image -->
+      <div class="hero-product-image-wrapper">
+        {% if section.settings.hero_image != blank %}
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 800 }}"
+            srcset="{{ section.settings.hero_image | image_url: width: 400 }} 400w,
+                    {{ section.settings.hero_image | image_url: width: 600 }} 600w,
+                    {{ section.settings.hero_image | image_url: width: 800 }} 800w,
+                    {{ section.settings.hero_image | image_url: width: 1000 }} 1000w"
+            sizes="(min-width: 990px) 50vw, 100vw"
+            alt="{{ section.settings.hero_image.alt | escape }}"
+            loading="lazy"
+            class="hero-product-image"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-product-image-placeholder' }}
+        {% endif %}
+
+        {% if section.settings.show_hero_overlay %}
+          <div class="hero-product-image-overlay">
+            {% if section.settings.hero_title != blank %}
+              <h2 class="hero-product-overlay-title">{{ section.settings.hero_title }}</h2>
+            {% endif %}
+            {% if section.settings.hero_subtitle != blank %}
+              <p class="hero-product-overlay-subtitle">{{ section.settings.hero_subtitle }}</p>
+            {% endif %}
+            {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
+              <a href="{{ section.settings.hero_button_link }}" class="hero-product-overlay-button">
+                {{ section.settings.hero_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Slider -->
+      <div class="hero-product-slider-wrapper">
+        <div class="hero-product-slider-container">
+          {% render 'slider-arrows',
+            direction: 'prev',
+            class: 'hero-product-slider-arrow hero-product-slider-arrow--prev',
+            label: 'Produto anterior'
+          %}
+
+          <div class="hero-product-slider-track-wrapper">
+            <div class="hero-product-slider-track">
+              {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+                <div class="hero-product-card" data-product-id="{{ product.id }}">
+                  <div class="hero-product-card__inner">
+                    <div class="hero-product-card__media">
+                      {% if product.featured_image %}
+                        <img
+                          src="{{ product.featured_image | image_url: width: 500 }}"
+                          srcset="{{ product.featured_image | image_url: width: 165 }} 165w,
+                                  {{ product.featured_image | image_url: width: 360 }} 360w,
+                                  {{ product.featured_image | image_url: width: 533 }} 533w"
+                          sizes="(min-width: 990px) 200px, calc(100vw - 40px)"
+                          alt="{{ product.featured_image.alt | escape }}"
+                          loading="lazy"
+                          class="hero-product-card__image"
+                        >
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'hero-product-placeholder-svg' }}
+                      {% endif %}
+
+                      {% if product.compare_at_price > product.price %}
+                        {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
+                        <span class="hero-product-card__badge">{{ discount_percentage }}% OFF</span>
+                      {% endif %}
+
+                      <button class="hero-product-card__wishlist" aria-label="Add to wishlist">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+
+                      <div class="hero-product-card__overlay">
+                        <div class="hero-product-size-selector">
+                          <p class="hero-product-size-selector__label">Selecione um tamanho</p>
+                          <div class="hero-product-size-selector__options">
+                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--prev" aria-label="Previous size">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                              </svg>
+                            </button>
+                            
+                            <div class="hero-product-size-selector__track-wrapper">
+                              <div class="hero-product-size-selector__track">
+                                {% if product.variants.size > 0 %}
+                                  {% for variant in product.variants %}
+                                    {% if variant.option1 %}
+                                      <button 
+                                        class="hero-product-size-selector__option {% if forloop.first %}active{% endif %}" 
+                                        data-variant-id="{{ variant.id }}"
+                                        {% unless variant.available %}disabled{% endunless %}
+                                      >
+                                        {{ variant.option1 }}
+                                      </button>
+                                    {% endif %}
+                                  {% endfor %}
+                                {% else %}
+                                  <button class="hero-product-size-selector__option active">Único</button>
+                                {% endif %}
+                              </div>
+                            </div>
+
+                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--next" aria-label="Next size">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        <button class="hero-product-card__add-to-cart" data-product-id="{{ product.id }}">
+                          Adicionar à sacola
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="hero-product-card__info">
+                      <h3 class="hero-product-card__title">
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                      </h3>
+
+                      <div class="hero-product-card__price">
+                        <span class="price price--current">
+                          {{ product.price | money }}
+                        </span>
+                        {% if product.compare_at_price > product.price %}
+                          <span class="hero-product-price--compare">
+                            {{ product.compare_at_price | money }}
+                          </span>
+                        {% endif %}
+                      </div>
+
+                      {% if section.settings.show_installments %}
+                        {% assign installment_value = product.price | divided_by: 6.0 %}
+                        <p class="hero-product-card__installments">
+                          ou 6x de {{ installment_value | money }} sem juros
+                        </p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% render 'slider-arrows',
+            direction: 'next',
+            class: 'hero-product-slider-arrow hero-product-slider-arrow--next',
+            label: 'Próximo produto'
+          %}
+        </div>
+
+        <div class="hero-product-slider-dots"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{{ 'hero-product-slider.js' | asset_url }}" defer></script>
+
+
+{% schema %}
+{
+  "name": "Hero Product Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagem do Hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero_overlay",
+      "label": "Mostrar overlay com texto",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Título do overlay",
+      "default": "Nova Coleção"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtítulo do overlay"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Product Slider"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Coleção de produtos"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Produtos para mostrar",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_installments",
+      "label": "Mostrar parcelas",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Product Slider"
+    }
+  ]
+}
+{% endschema %}
