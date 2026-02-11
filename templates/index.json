@@ -46,7 +46,10 @@
         "slide_KRpT6C"
       ],
       "name": "Hero Slider",
-      "settings": {}
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
     },
     "benefits_bar_eHymdh": {
       "type": "benefits-bar",
@@ -93,7 +96,7 @@
       "name": "Barra de Benefícios",
       "settings": {
         "background": "#f5f5f5",
-        "text_color": "#4F4F4F"
+        "text_color": "#4f4f4f"
       }
     },
     "categories_grid_qpzWx7": {
@@ -165,7 +168,7 @@
       "type": "featured-cta",
       "name": "CTA com imagem",
       "settings": {
-        "background": "#F5F5F5",
+        "background": "#f5f5f5",
         "text_color": "#161616",
         "button_background": "#e91e63",
         "button_text_color": "#ffffff",
@@ -175,6 +178,18 @@
         "cta_label": "",
         "link": "/link",
         "image": "shopify://shop_images/card-image-brilhar-verao.png"
+      }
+    },
+    "product_slider_Aecx9W": {
+      "type": "product-slider",
+      "name": "Product Slider",
+      "settings": {
+        "title": "Favoritos da Semana",
+        "collection": "sapatella",
+        "products_to_show": 8,
+        "show_installments": true,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "editorial_categories_Am68tt": {
@@ -264,6 +279,7 @@
     "benefits_bar_eHymdh",
     "categories_grid_qpzWx7",
     "featured_cta_zfmrij",
+    "product_slider_Aecx9W",
     "editorial_categories_Am68tt",
     "banner_fitt_hViTk4",
     "article_detail_9WU3M3"
