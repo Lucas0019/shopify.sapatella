@@ -245,6 +245,23 @@
         "background": "#f5f5f5"
       }
     },
+    "hero_product_slider_dqRzwd": {
+      "type": "hero-product-slider",
+      "name": "Hero Product Slider",
+      "settings": {
+        "hero_image": "shopify://shop_images/card-image-brilhar-verao.png",
+        "show_hero_overlay": false,
+        "hero_title": "",
+        "hero_subtitle": "",
+        "hero_button_text": "",
+        "hero_button_link": "",
+        "collection": "sapatella",
+        "products_to_show": 6,
+        "show_installments": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "banner_fitt_hViTk4": {
       "type": "banner-fitt",
       "name": "Banner Fitt",
@@ -281,6 +298,7 @@
     "featured_cta_zfmrij",
     "product_slider_Aecx9W",
     "editorial_categories_Am68tt",
+    "hero_product_slider_dqRzwd",
     "banner_fitt_hViTk4",
     "article_detail_9WU3M3"
   ]
