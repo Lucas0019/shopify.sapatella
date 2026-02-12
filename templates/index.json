@@ -96,7 +96,7 @@
       }
     },
     "categories_grid_qpzWx7": {
-      "type": "categories-grid",
+      "type": "wc-categories-grid",
       "blocks": {
         "category_TtDBGL": {
           "type": "category",

@@ -2,19 +2,12 @@
   padding: 48px 16px;
 }
 
-@media screen and (min-width: 48rem) {
-  .categories-grid {
-    padding: 48px 0;
-    margin-bottom: 24px;
-  }
-}
-
 .categories-grid__title {
   text-align: center;
-  font-size: 20px;
+  font-size: var(--font-size-title-md);
   font-weight: 500;
   margin-bottom: 32px;
-  color: #4f4f4f;
+  color: var(--color-brand-neutral);
 }
 
 .categories-grid__list {
@@ -71,11 +64,12 @@
 
 .categories-grid__label {
   margin-top: 12px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-body-lg);
+  font-weight: 400;
   transition:
     color 0.3s ease,
     transform 0.3s ease;
+  color: var(--color-brand-neutral);
 }
 
 @media (hover: hover) {
@@ -98,13 +92,18 @@
 }
 
 @media screen and (min-width: 48rem) {
+  .categories-grid {
+    padding: 48px 0;
+    margin-bottom: 24px;
+  }
+
   .categories-grid__list {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px 24px;
   }
 
   .categories-grid__title {
-    font-size: 22px;
+    font-size: var(--font-size-title-md);
   }
 }
 
@@ -115,10 +114,14 @@
   }
 
   .categories-grid__title {
-    font-size: 24px;
+    font-size: var(--font-size-title-lg);
     line-height: 32px;
   }
 }
+
+/* ========================================
+   ANIMATION
+======================================== */
 
 @keyframes fadeIn {
   from {
