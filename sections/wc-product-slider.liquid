@@ -1,31 +1,27 @@
-{% comment %}
-  Product Slider Component for Shopify Dawn Theme
-  Displays a slider with product cards including wishlist, size selector, and add to cart
-{% endcomment %}
+{{ 'wc-product-slider.css' | asset_url | stylesheet_tag }}
+{{ 'wc-product-slider.js' | asset_url | script_tag }}
 
-{{ 'product-slider.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-<div class="product-slider-section section-{{ section.id }}-padding">
-  <div class="product-slider-content ">
+<section
+  class="product-slider-section section-{{ section.id }}-padding"
+  role="region"
+  aria-labelledby="product-slider-title-{{ section.id }}"
+>
+  <div class="product-slider-content">
     {% if section.settings.title != blank %}
-      <h2 class="product-slider-title">{{ section.settings.title }}</h2>
+      <h2
+        id="product-slider-title-{{ section.id }}"
+        class="product-slider-title"
+      >
+        {{ section.settings.title }}
+      </h2>
     {% endif %}
 
-    <div class="product-slider-container">
+    <div
+      class="product-slider-container"
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="{{ section.settings.title | escape }}"
+    >
       {% render 'slider-arrows',
         direction: 'prev',
         class: 'product-slider-arrow product-slider-arrow--prev',
@@ -33,9 +29,17 @@
       %}
 
       <div class="product-slider-wrapper">
-        <div class="product-slider-track">
+        <div
+          class="product-slider-track"
+          aria-live="polite"
+        >
           {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
-            <div class="product-card" data-product-id="{{ product.id }}">
+            <div
+              class="product-card"
+              data-product-id="{{ product.id }}"
+              role="group"
+              aria-label="{{ product.title | escape }}"
+            >
               <div class="product-card__media">
                 {% if product.featured_image %}
                   <img
@@ -46,7 +50,7 @@
                             {{ product.featured_image | image_url: width: 720 }} 720w,
                             {{ product.featured_image | image_url: width: 940 }} 940w"
                     sizes="(min-width: 1200px) 267px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt="{{ product.featured_image.alt | escape }}"
+                    alt="{{ product.featured_image.alt | escape | default: product.title }}"
                     loading="lazy"
                     class="product-card__image"
                   >
@@ -56,33 +60,55 @@
 
                 {% if product.compare_at_price > product.price %}
                   {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
-                  <span class="product-card__badge">{{ discount_percentage }}% OFF</span>
+                  <span
+                    class="product-card__badge"
+                    aria-label="{{ discount_percentage }}% de desconto"
+                  >
+                    {{ discount_percentage }}% OFF
+                  </span>
                 {% endif %}
 
-                <button class="product-card__wishlist" aria-label="Add to wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button
+                  class="product-card__wishlist"
+                  type="button"
+                  aria-label="Adicionar {{ product.title }} à lista de desejos"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
 
                 <div class="product-card__overlay">
                   <div class="product-card__size-selector">
-                    <p class="size-selector__label">Selecione um tamanho</p>
-                    <div class="size-selector__options">
-                      <button class="size-selector__arrow size-selector__arrow--prev" aria-label="Previous size">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <p class="size-selector__label" id="size-label-{{ product.id }}">
+                      Selecione um tamanho
+                    </p>
+
+                    <div
+                      class="size-selector__options"
+                      role="group"
+                      aria-labelledby="size-label-{{ product.id }}"
+                    >
+                      <button
+                        class="size-selector__arrow size-selector__arrow--prev"
+                        type="button"
+                        aria-label="Tamanho anterior"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
                         </svg>
                       </button>
-                      
+
                       <div class="size-selector__track-wrapper">
                         <div class="size-selector__track">
                           {% if product.variants.size > 0 %}
                             {% for variant in product.variants %}
                               {% if variant.option1 %}
-                                <button 
-                                  class="size-selector__option {% if forloop.first %}active{% endif %}" 
+                                <button
+                                  class="size-selector__option {% if forloop.first %}active{% endif %}"
+                                  type="button"
                                   data-variant-id="{{ variant.id }}"
+                                  aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
                                   {% unless variant.available %}disabled{% endunless %}
                                 >
                                   {{ variant.option1 }}
@@ -90,20 +116,35 @@
                               {% endif %}
                             {% endfor %}
                           {% else %}
-                            <button class="size-selector__option active">Único</button>
+                            <button
+                              class="size-selector__option active"
+                              type="button"
+                              aria-pressed="true"
+                            >
+                              Único
+                            </button>
                           {% endif %}
                         </div>
                       </div>
 
-                      <button class="size-selector__arrow size-selector__arrow--next" aria-label="Next size">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <button
+                        class="size-selector__arrow size-selector__arrow--next"
+                        type="button"
+                        aria-label="Próximo tamanho"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                           <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
                         </svg>
                       </button>
                     </div>
                   </div>
 
-                  <button class="product-card__add-to-cart" data-product-id="{{ product.id }}">
+                  <button
+                    class="product-card__add-to-cart"
+                    type="button"
+                    data-product-id="{{ product.id }}"
+                    aria-label="Adicionar {{ product.title }} à sacola"
+                  >
                     Adicionar à sacola
                   </button>
                 </div>
@@ -111,13 +152,16 @@
 
               <div class="product-card__info">
                 <h3 class="product-card__title">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
+                  <a href="{{ product.url }}">
+                    {{ product.title }}
+                  </a>
                 </h3>
 
                 <div class="product-card__price">
                   <span class="price price--current">
                     {{ product.price | money }}
                   </span>
+
                   {% if product.compare_at_price > product.price %}
                     <span class="price price--compare">
                       {{ product.compare_at_price | money }}
@@ -144,11 +188,13 @@
       %}
     </div>
 
-    <div class="product-slider-dots"></div>
+    <div
+      class="product-slider-dots"
+      role="tablist"
+      aria-label="Paginação do carrossel"
+    ></div>
   </div>
-</div>
-
-<script src="{{ 'product-slider.js' | asset_url }}" defer></script>
+</section>
 
 
 {% schema %}
@@ -181,26 +227,6 @@
       "label": "Mostrar parcelas",
       "default": true
     },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding superior",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding inferior",
-      "default": 36
-    }
   ],
   "presets": [
     {

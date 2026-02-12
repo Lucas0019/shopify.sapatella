@@ -177,7 +177,7 @@
       }
     },
     "product_slider_Aecx9W": {
-      "type": "product-slider",
+      "type": "wc-product-slider",
       "name": "Product Slider",
       "settings": {
         "title": "Favoritos da Semana",
