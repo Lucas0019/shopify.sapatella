@@ -269,7 +269,7 @@
       }
     },
     "article_detail_9WU3M3": {
-      "type": "article-detail",
+      "type": "wc-article-detail",
       "name": "Article Detail",
       "settings": {
         "title": "Sobre a Sapatella",
