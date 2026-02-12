@@ -1,29 +1,11 @@
-{% comment %}
-  Hero Product Slider Component for Shopify Dawn Theme
-  Displays a hero image on the left and product slider on the right
-{% endcomment %}
+{{ 'wc-hero-product-slider.css' | asset_url | stylesheet_tag }}
+{{ 'wc-hero-product-slider.js' | asset_url | script_tag }}
 
-{{ 'hero-product-slider.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-<div class="hero-product-slider-section section-{{ section.id }}-padding">
+<section class="hero-product-slider-section section-{{ section.id }}-padding" role="region" aria-label="Destaques da coleção">
   <div class="hero-product-slider-content">
     
     <div class="hero-product-slider-grid">
-      <!-- Hero Image -->
       <div class="hero-product-image-wrapper">
         {% if section.settings.hero_image != blank %}
           <img
@@ -50,7 +32,7 @@
               <p class="hero-product-overlay-subtitle">{{ section.settings.hero_subtitle }}</p>
             {% endif %}
             {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
-              <a href="{{ section.settings.hero_button_link }}" class="hero-product-overlay-button">
+              <a href="{{ section.settings.hero_button_link }}" class="hero-product-overlay-button" aria-label="{{ section.settings.hero_button_text }}">
                 {{ section.settings.hero_button_text }}
               </a>
             {% endif %}
@@ -58,9 +40,9 @@
         {% endif %}
       </div>
 
-      <!-- Product Slider -->
-      <div class="hero-product-slider-wrapper">
+      <div class="hero-product-slider-wrapper" role="region" aria-label="Produtos em destaque">
         <div class="hero-product-slider-container">
+
           {% render 'slider-arrows',
             direction: 'prev',
             class: 'hero-product-slider-arrow hero-product-slider-arrow--prev',
@@ -70,7 +52,7 @@
           <div class="hero-product-slider-track-wrapper">
             <div class="hero-product-slider-track">
               {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
-                <div class="hero-product-card" data-product-id="{{ product.id }}">
+                <div class="hero-product-card" data-product-id="{{ product.id }}" role="group" aria-label="{{ product.title }}">
                   <div class="hero-product-card__inner">
                     <div class="hero-product-card__media">
                       {% if product.featured_image %}
@@ -90,10 +72,10 @@
 
                       {% if product.compare_at_price > product.price %}
                         {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
-                        <span class="hero-product-card__badge">{{ discount_percentage }}% OFF</span>
+                        <span class="hero-product-card__badge" aria-label="{{ discount_percentage }}% de desconto">{{ discount_percentage }}% OFF</span>
                       {% endif %}
 
-                      <button class="hero-product-card__wishlist" aria-label="Add to wishlist">
+                      <button class="hero-product-card__wishlist" aria-label="Adicionar {{ product.title }} à lista de desejos">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -103,7 +85,7 @@
                         <div class="hero-product-size-selector">
                           <p class="hero-product-size-selector__label">Selecione um tamanho</p>
                           <div class="hero-product-size-selector__options">
-                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--prev" aria-label="Previous size">
+                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--prev" aria-label="Tamanho anterior">
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
                               </svg>
@@ -118,18 +100,19 @@
                                         class="hero-product-size-selector__option {% if forloop.first %}active{% endif %}" 
                                         data-variant-id="{{ variant.id }}"
                                         {% unless variant.available %}disabled{% endunless %}
+                                        aria-label="{{ variant.option1 }} - {% if variant.available %}Disponível{% else %}Indisponível{% endif %}"
                                       >
                                         {{ variant.option1 }}
                                       </button>
                                     {% endif %}
                                   {% endfor %}
                                 {% else %}
-                                  <button class="hero-product-size-selector__option active">Único</button>
+                                  <button class="hero-product-size-selector__option active" aria-label="Tamanho único">Único</button>
                                 {% endif %}
                               </div>
                             </div>
 
-                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--next" aria-label="Next size">
+                            <button class="hero-product-size-selector__arrow hero-product-size-selector__arrow--next" aria-label="Próximo tamanho">
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
                               </svg>
@@ -137,7 +120,7 @@
                           </div>
                         </div>
 
-                        <button class="hero-product-card__add-to-cart" data-product-id="{{ product.id }}">
+                        <button class="hero-product-card__add-to-cart" data-product-id="{{ product.id }}" aria-label="Adicionar {{ product.title }} à sacola">
                           Adicionar à sacola
                         </button>
                       </div>
@@ -145,7 +128,7 @@
 
                     <div class="hero-product-card__info">
                       <h3 class="hero-product-card__title">
-                        <a href="{{ product.url }}">{{ product.title }}</a>
+                        <a href="{{ product.url }}" aria-label="Ver {{ product.title }}">{{ product.title }}</a>
                       </h3>
 
                       <div class="hero-product-card__price">
@@ -153,15 +136,13 @@
                           {{ product.price | money }}
                         </span>
                         {% if product.compare_at_price > product.price %}
-                          <span class="hero-product-price--compare">
-                            {{ product.compare_at_price | money }}
-                          </span>
+                          <span class="hero-product-price--compare" aria-label="Preço anterior">{{ product.compare_at_price | money }}</span>
                         {% endif %}
                       </div>
 
                       {% if section.settings.show_installments %}
                         {% assign installment_value = product.price | divided_by: 6.0 %}
-                        <p class="hero-product-card__installments">
+                        <p class="hero-product-card__installments" aria-label="Parcelas">
                           ou 6x de {{ installment_value | money }} sem juros
                         </p>
                       {% endif %}
@@ -179,14 +160,14 @@
           %}
         </div>
 
-        <div class="hero-product-slider-dots"></div>
+        <div class="hero-product-slider-dots" role="tablist" aria-label="Navegação entre produtos"></div>
       </div>
     </div>
 
   </div>
-</div>
+</section>
 
-<script src="{{ 'hero-product-slider.js' | asset_url }}" defer></script>
+
 
 
 {% schema %}
@@ -201,37 +182,6 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Imagem do Hero"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_hero_overlay",
-      "label": "Mostrar overlay com texto",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "hero_title",
-      "label": "Título do overlay",
-      "default": "Nova Coleção"
-    },
-    {
-      "type": "text",
-      "id": "hero_subtitle",
-      "label": "Subtítulo do overlay"
-    },
-    {
-      "type": "text",
-      "id": "hero_button_text",
-      "label": "Texto do botão"
-    },
-    {
-      "type": "url",
-      "id": "hero_button_link",
-      "label": "Link do botão"
-    },
-    {
-      "type": "header",
-      "content": "Product Slider"
     },
     {
       "type": "collection",
@@ -257,26 +207,6 @@
       "type": "header",
       "content": "Espaçamento"
     },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding superior",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding inferior",
-      "default": 36
-    }
   ],
   "presets": [
     {

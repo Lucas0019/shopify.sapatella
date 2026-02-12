@@ -238,7 +238,7 @@
       }
     },
     "hero_product_slider_dqRzwd": {
-      "type": "hero-product-slider",
+      "type": "wc-hero-product-slider",
       "name": "Hero Product Slider",
       "settings": {
         "hero_image": "shopify://shop_images/card-image-brilhar-verao.png",
