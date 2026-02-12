@@ -9,7 +9,7 @@
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  height: 160px;
+  height: 120px;
   background: linear-gradient(0deg, #161616 0%, rgba(22, 22, 22, 0) 100%);
   pointer-events: none;
   z-index: 1;
@@ -40,32 +40,24 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 1rem;
   color: #000;
 }
 
 .hero-slider__tag {
-  font-size: 14px;
-  margin-bottom: 8px;
+  font-size: var(--font-size-body-sm);
+  margin-bottom: 0.5rem;
 }
 
 .hero-slider__cta {
-  margin-top: 16px;
-  padding: 12px 24px;
-  background: #e91e63;
-  color: #fff;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-brand-primary);
+  color: var(--color-brand-light);
 }
 
 .hero-slider__arrows {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-}
-
-@media screen and (max-width: 64rem) {
-  .hero-slider__arrows {
-    display: none;
-  }
+  display: none;
 }
 
 .slider-arrow {
@@ -73,12 +65,12 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: none;
   border-radius: 50%;
-  background: #fff;
-  opacity: 0.8;
+  background: var(--color-brand-light);
+  opacity: 0.85;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -87,8 +79,8 @@
 }
 
 .slider-arrow svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .slider-arrow--prev {
@@ -99,23 +91,9 @@
   right: 8px;
 }
 
-[data-slider] {
-  touch-action: pan-y;
-}
-
-@media (min-width: 768px) {
-  .slider-arrow--prev {
-    left: 44px;
-  }
-
-  .slider-arrow--next {
-    right: 44px;
-  }
-}
-
 .hero-slider__dots {
   position: absolute;
-  bottom: 24px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -129,15 +107,55 @@
   padding: 0;
   border: none;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
   animation: bubble 0.6s;
 }
 
 .hero-slider__dots button.is-active {
   width: 16px;
-  background: #e91e63;
+  background: var(--color-brand-primary);
 }
+
+@media screen and (min-width: 48rem) {
+  .hero-slider::after {
+    height: 160px;
+  }
+
+  .slider-arrow--prev {
+    left: 32px;
+  }
+
+  .slider-arrow--next {
+    right: 32px;
+  }
+
+  .hero-slider__dots {
+    bottom: 24px;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .hero-slider__arrows {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .slider-arrow--prev {
+    left: 44px;
+  }
+
+  .slider-arrow--next {
+    right: 44px;
+  }
+}
+
+/* ========================================
+   ANIMATION
+======================================== */
 
 @keyframes bubble {
   0% {

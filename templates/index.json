@@ -10,7 +10,7 @@
 {
   "sections": {
     "hero_slider_4BxmHh": {
-      "type": "hero-slider",
+      "type": "wc-hero-slider",
       "blocks": {
         "slide_zNYFAr": {
           "type": "slide",
@@ -40,11 +40,7 @@
           }
         }
       },
-      "block_order": [
-        "slide_zNYFAr",
-        "slide_KhW9Bw",
-        "slide_KRpT6C"
-      ],
+      "block_order": ["slide_zNYFAr", "slide_KhW9Bw", "slide_KRpT6C"],
       "name": "Hero Slider",
       "settings": {
         "autoplay": true,
@@ -235,11 +231,7 @@
           }
         }
       },
-      "block_order": [
-        "category_67VmMY",
-        "category_Fgc9e6",
-        "category_ARKnJY"
-      ],
+      "block_order": ["category_67VmMY", "category_Fgc9e6", "category_ARKnJY"],
       "name": "Categorias editorial",
       "settings": {
         "background": "#f5f5f5"

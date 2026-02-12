@@ -1,11 +1,14 @@
+{{ 'wc-hero-slider.css' | asset_url | stylesheet_tag }}
+{{ 'wc-hero-slider.js' | asset_url | script_tag }}
 
-{{ 'hero-slider.css' | asset_url | stylesheet_tag }}
-{{ 'hero-slider.js' | asset_url | script_tag }}
-
-<section class="hero-slider"   
+<section
+  class="hero-slider"
+  tabindex="0"
   data-slider
   data-autoplay="{{ section.settings.autoplay }}"
   data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+  aria-roledescription="carousel"
+  aria-label="Hero Slider"
 >
   <div class="hero-slider__track" data-slider-track>
     {% for block in section.blocks %}
@@ -13,6 +16,7 @@
         href="{{ block.settings.link }}"
         class="hero-slider__slide"
         data-slide
+        aria-label="Banner {{ forloop.index }}"
         {{ block.shopify_attributes }}
       >
         <picture>
@@ -22,36 +26,40 @@
               srcset="{{ block.settings.image_mobile | image_url: width: 900 }}"
             >
           {% endif %}
+
           <img
             src="{{ block.settings.image | image_url: width: 2000 }}"
             alt="{{ block.settings.alt }}"
             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
           >
         </picture>
-
- 
       </a>
     {% endfor %}
   </div>
 
-<div class="hero-slider__arrows">
-  {% render 'slider-arrows',
-    direction: 'prev',
-    class: 'hero-slider__arrow',
-    label: 'Banner anterior'
-  %}
+  <!-- Navigation Arrows -->
+  <nav class="hero-slider__arrows" aria-label="Navegação do slider">
+    {% render 'slider-arrows',
+      direction: 'prev',
+      class: 'hero-slider__arrow',
+      label: 'Banner anterior'
+    %}
 
-  {% render 'slider-arrows',
-    direction: 'next',
-    class: 'hero-slider__arrow',
-    label: 'Próximo banner'
-  %}
-</div>
+    {% render 'slider-arrows',
+      direction: 'next',
+      class: 'hero-slider__arrow',
+      label: 'Próximo banner'
+    %}
+  </nav>
 
-
-  <!-- Dots -->
-  <div class="hero-slider__dots" data-dots></div>
+  <!-- Pagination Dots -->
+  <nav
+    class="hero-slider__dots"
+    data-dots
+    aria-label="Paginação do slider"
+  ></nav>
 </section>
+
 
 {% schema %}
 {
