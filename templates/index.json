@@ -189,7 +189,7 @@
       }
     },
     "editorial_categories_Am68tt": {
-      "type": "editorial-categories",
+      "type": "wc-editorial-categories",
       "blocks": {
         "category_67VmMY": {
           "type": "category",
