@@ -48,7 +48,7 @@
       }
     },
     "benefits_bar_eHymdh": {
-      "type": "benefits-bar",
+      "type": "wc-benefits-bar",
       "blocks": {
         "benefit_NmCkkN": {
           "type": "benefit",

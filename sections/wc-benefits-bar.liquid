@@ -1,23 +1,24 @@
-{{ 'benefits-bar.css' | asset_url | stylesheet_tag }}
-{{ 'benefits-bar.js' | asset_url | script_tag }}
+{{ 'wc-benefits-bar.css' | asset_url | stylesheet_tag }}
+{{ 'wc-benefits-bar.js' | asset_url | script_tag }}
 
-<style>
-  #shopify-section-{{ section.id }} {
-    --benefits-bg: {{ section.settings.background }};
-    --benefits-text: {{ section.settings.text_color }};
-  }
-</style>
 
-<section class="benefits-bar" role="region" aria-label="Benefícios da loja">
-  <div class="benefits-bar__container page-width">
+<section
+  class="benefits-bar"
+  role="region"
+  aria-label="Benefícios da loja"
+>
+  <ul class="benefits-bar__container page-width" role="list">
     {% for block in section.blocks %}
-      <div class="benefits-bar__item" {{ block.shopify_attributes }}>
-        
+      <li
+        class="benefits-bar__item"
+        role="listitem"
+        {{ block.shopify_attributes }}
+      >
         {% if block.settings.show_icon and block.settings.icon != blank %}
-          <span class="benefits-bar__icon">
+          <span class="benefits-bar__icon" aria-hidden="true">
             <img
               src="{{ block.settings.icon | image_url: width: 64 }}"
-              alt="{{ block.settings.icon.alt | escape }}"
+              alt=""
               loading="lazy"
               width="28"
               height="28"
@@ -28,30 +29,17 @@
         <p class="benefits-bar__text">
           {{ block.settings.text }}
         </p>
-      </div>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 </section>
+
 
 {% schema %}
 {
   "name": "Barra de Benefícios",
   "tag": "section",
   "class": "section-benefits-bar",
-  "settings": [
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Cor de fundo",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Cor do texto",
-      "default": "#4F4F4F"
-    }
-  ],
   "blocks": [
     {
       "type": "benefit",

@@ -1,7 +1,5 @@
 (function () {
-  const benefitsBar = () => {
-    console.log("Benefits Bar script loaded");
-  };
+  const benefitsBar = () => {};
 
   document.addEventListener("DOMContentLoaded", benefitsBar);
 
