@@ -255,7 +255,7 @@
       }
     },
     "banner_fitt_hViTk4": {
-      "type": "banner-fitt",
+      "type": "wc-banner-fitt",
       "name": "Banner Fitt",
       "settings": {
         "image_desktop": "shopify://shop_images/banner-full-fitt.png",

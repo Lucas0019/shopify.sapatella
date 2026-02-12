@@ -1,13 +1,4 @@
-{{ 'banner-fitt.css' | asset_url | stylesheet_tag }}
-
-
-
-<style>
-  #shopify-section-{{ section.id }} {
-    --banner-ratio-mobile: {{ section.settings.aspect_ratio_mobile }}%;
-    --banner-ratio-desktop: {{ section.settings.aspect_ratio_desktop }}%;
-  }
-</style>
+{{ 'wc-banner-fitt.css' | asset_url | stylesheet_tag }}
 
 <section
   class="banner-fitt banner-fitt--{{ section.settings.container_width }}"
@@ -16,7 +7,7 @@
 >
   <div class="banner-fitt__container">
 
-    {% if is_clickable %}
+    {% if section.settings.link != blank %}
       <a
         href="{{ section.settings.link }}"
         class="banner-fitt__link"
@@ -55,11 +46,9 @@
             <img
               src="{{ fallback_image | image_url: width: 2000 }}"
               alt="{{ section.settings.alt_text | escape }}"
-              width="2000"
-              height="{{ 2000 | divided_by: fallback_image.aspect_ratio | round }}"
-              loading="{% if loading_attr %}lazy{% else %}eager{% endif %}"
-              decoding="async"
               class="banner-fitt__image"
+              loading="lazy"
+              decoding="async"
             >
           </picture>
         {% else %}
@@ -69,12 +58,13 @@
         {% endif %}
       </div>
 
-    {% if is_clickable %}
+    {% if section.settings.link != blank %}
       </a>
     {% endif %}
 
   </div>
 </section>
+
 
 {% schema %}
 {
@@ -151,26 +141,6 @@
       "label": "Ativar lazy loading",
       "default": true
     },
-    {
-      "type": "range",
-      "id": "aspect_ratio_mobile",
-      "label": "Proporção Mobile",
-      "min": 50,
-      "max": 200,
-      "step": 5,
-      "default": 100,
-      "unit": "%"
-    },
-    {
-      "type": "range",
-      "id": "aspect_ratio_desktop",
-      "label": "Proporção Desktop",
-      "min": 30,
-      "max": 100,
-      "step": 5,
-      "default": 45,
-      "unit": "%"
-    }
   ],
   "presets": [
     {
