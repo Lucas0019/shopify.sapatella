@@ -191,7 +191,7 @@
             "image": "shopify://shop_images/editorial-card-1.png",
             "content_position": "content-top",
             "align_content_position": "start",
-            "padding_bottom": false,
+            "padding_bottom": true,
             "title": "Rasteiras & Birkens",
             "description": "A categoria de Sandália Rasteira da Sapatella é um verdadeiro paraíso para os amantes de conforto e estilo.",
             "cta_label": "Eu quero",
