@@ -161,7 +161,7 @@
       }
     },
     "featured_cta_zfmrij": {
-      "type": "featured-cta",
+      "type": "wc-featured-cta",
       "name": "CTA com imagem",
       "settings": {
         "background": "#f5f5f5",

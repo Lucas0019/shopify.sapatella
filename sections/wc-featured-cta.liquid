@@ -1,27 +1,11 @@
-{{ 'featured-cta.css' | asset_url | stylesheet_tag }}
-
-<style>
-  #shopify-section-{{ section.id }} {
-    --cta-bg: {{ section.settings.background }};
-    --cta-text: {{ section.settings.text_color }};
-    --cta-button-bg: {{ section.settings.button_background }};
-    --cta-button-text: {{ section.settings.button_text_color }};
-  }
-</style>
+{{ 'wc-featured-cta.css' | asset_url | stylesheet_tag }}
 
 <section
   class="featured-cta"
   aria-labelledby="featured-cta-title-{{ section.id }}"
 >
   <div class="featured-cta__container page-width">
-
     <div class="featured-cta__content">
-      {% if section.settings.subtitle != blank %}
-        <p class="featured-cta__subtitle">
-          {{ section.settings.subtitle }}
-        </p>
-      {% endif %}
-
       {% if section.settings.title != blank %}
         <h2
           id="featured-cta-title-{{ section.id }}"
@@ -64,7 +48,6 @@
         >
       </a>
     {% endif %}
-
   </div>
 </section>
 
@@ -74,36 +57,6 @@
   "tag": "section",
   "class": "section-featured-cta",
   "settings": [
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Cor de fundo",
-      "default": "#F5F5F5"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Cor do texto",
-      "default": "#161616"
-    },
-    {
-      "type": "color",
-      "id": "button_background",
-      "label": "Cor do botão",
-      "default": "#e91e63"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Cor do texto do botão",
-      "default": "#ffffff"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtítulo",
-      "default": "Pra brilhar no verão"
-    },
     {
       "type": "text",
       "id": "title",
