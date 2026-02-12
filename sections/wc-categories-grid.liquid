@@ -1,5 +1,5 @@
-{{ 'categories-grid.css' | asset_url | stylesheet_tag }}
-{{ 'categories-grid.js' | asset_url | script_tag }}
+{{ 'wc-categories-grid.css' | asset_url | stylesheet_tag }}
+{{ 'wc-categories-grid.js' | asset_url | script_tag }}
 
 <section class="categories-grid page-width" aria-label="Compre por categoria">
   <div class="categories-grid__container">
@@ -21,7 +21,7 @@
             {% if block.settings.image != blank %}
               <img
                 src="{{ block.settings.image | image_url: width: 400 }}"
-                alt="{{ block.settings.label | escape }}"
+                alt="{{ block.settings.label | escage }}"
                 loading="lazy"
                 width="200"
                 height="200"

@@ -1,7 +1,5 @@
 (function () {
-  const categoriesGrid = () => {
-    console.log("Categories Grid script loaded");
-  };
+  const categoriesGrid = () => {};
 
   document.addEventListener("DOMContentLoaded", categoriesGrid);
 

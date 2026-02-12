@@ -1,4 +1,4 @@
-{{ 'article-detail.css' | asset_url | stylesheet_tag }}
+{{ 'wc-article-detail.css' | asset_url | stylesheet_tag }}
 
 <section
   class="article-detail"
@@ -10,7 +10,6 @@
 
     <div class="article-detail__grid {% if section.settings.layout == 'image-right' %}article-detail__grid--inverted{% endif %}">
 
-      <!-- Conteúdo -->
       <div class="article-detail__content-col">
         <div
           class="article-detail__content"
@@ -32,7 +31,7 @@
             <div class="article-detail__button-wrapper">
               <a
                 href="{{ section.settings.button_link }}"
-                class="article-detail__button button"
+                class="article-detail__button"
               >
                 {{ section.settings.button_text }}
               </a>
@@ -41,7 +40,6 @@
         </div>
       </div>
 
-      <!-- Imagem -->
       <div class="article-detail__image-col">
         <div class="article-detail__image-wrapper">
 

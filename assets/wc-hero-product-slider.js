@@ -14,7 +14,7 @@
     const nextArrow = sliderContainer.querySelector(
       ".hero-product-slider-arrow--next",
     );
-    const dotsContainer = sliderContainer.querySelector(
+    const dotsContainer = sliderContainer.parentElement.querySelector(
       ".hero-product-slider-dots",
     );
 
@@ -22,11 +22,10 @@
     let cardsVisible = getCardsVisible();
     let totalSlides = Math.max(0, productCards.length - cardsVisible + 1);
 
-    // ------------------- Helpers -------------------
     function getCardsVisible() {
       const width = window.innerWidth;
-      if (width < 768) return 1; // Mobile
-      return 2; // Tablet e Desktop
+      if (width < 768) return 1;
+      return 2;
     }
 
     function getMaxSlideIndex() {
@@ -77,7 +76,6 @@
         });
     }
 
-    // ------------------- Navigation -------------------
     function goToPreviousSlide() {
       if (currentSlideIndex > 0) {
         currentSlideIndex--;
@@ -95,7 +93,6 @@
     prevArrow?.addEventListener("click", goToPreviousSlide);
     nextArrow?.addEventListener("click", goToNextSlide);
 
-    // ------------------- Swipe Support -------------------
     let touchStartX = 0;
     sliderTrack.addEventListener("touchstart", (e) => {
       touchStartX = e.changedTouches[0].screenX;
@@ -110,19 +107,16 @@
       }
     });
 
-    // ------------------- Keyboard Navigation -------------------
     sliderContainer.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") goToPreviousSlide();
       if (e.key === "ArrowRight") goToNextSlide();
     });
 
-    // ------------------- Product Features -------------------
     productCards.forEach((card) => {
       initializeWishlist(card);
       initializeSizeSelector(card);
       initializeAddToCart(card);
 
-      // ------------------- Click on card to PDP -------------------
       card.addEventListener("click", (e) => {
         if (
           e.target.closest(".hero-product-card__add-to-cart") ||
@@ -137,7 +131,6 @@
       });
     });
 
-    // ------------------- Wishlist -------------------
     function initializeWishlist(card) {
       const wishlistButton = card.querySelector(".hero-product-card__wishlist");
       if (!wishlistButton) return;
@@ -160,7 +153,6 @@
       });
     }
 
-    // ------------------- Size Selector -------------------
     function initializeSizeSelector(card) {
       const sizeOptions = card.querySelectorAll(
         ".hero-product-size-selector__option",
@@ -220,7 +212,6 @@
       updateSizeTrack();
     }
 
-    // ------------------- Add to Cart -------------------
     function initializeAddToCart(card) {
       const addToCartButton = card.querySelector(
         ".hero-product-card__add-to-cart",
@@ -248,7 +239,6 @@
             body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] }),
           });
 
-          // Redirect to cart
           window.location.href = "/cart";
         } catch (error) {
           console.error("Erro ao adicionar ao carrinho:", error);
@@ -259,7 +249,6 @@
       });
     }
 
-    // ------------------- Debounce Helper -------------------
     function debounce(func, wait) {
       let timeout;
       return function executedFunction(...args) {
@@ -272,7 +261,6 @@
       };
     }
 
-    // ------------------- Window Resize -------------------
     window.addEventListener(
       "resize",
       debounce(() => {
@@ -289,7 +277,6 @@
     updateSliderPosition();
   };
 
-  // ------------------- Initialization -------------------
   const initAllSliders = () => {
     document
       .querySelectorAll(".hero-product-slider-section")
@@ -305,7 +292,6 @@
 
   document.addEventListener("DOMContentLoaded", initAllSliders);
 
-  // Shopify Theme Editor
   document.addEventListener("shopify:section:load", (event) => {
     const section = event.target.querySelector(".hero-product-slider-section");
     if (section) {

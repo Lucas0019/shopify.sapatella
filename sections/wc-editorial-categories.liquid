@@ -1,33 +1,25 @@
-{{ 'editorial-categories.css' | asset_url | stylesheet_tag }}
+{{ 'wc-editorial-categories.css' | asset_url | stylesheet_tag }}
 
-
-<style>
-  #shopify-section-{{ section.id }} {
-    --editorial-categories-bg: {{ section.settings.background }};
-  }
-</style>
-
-<section class="editorial-categories">
+<section class="editorial-categories" role="region" aria-label="Categorias editoriais">
   <div class="editorial-categories__container page-width">
     <div class="editorial-categories__grid editorial-categories__grid--{{ section.blocks.size }}">
       {% for block in section.blocks %}
         {% assign card_classes = "editorial-categories__card" %}
-        
+
         {% if block.settings.content_position == 'content-top' %}
           {% assign card_classes = card_classes | append: " editorial-categories__card--content-top" %}
         {% endif %}
-        
-        <a
-          href="{{ block.settings.link }}"
+
+        <article
           class="{{ card_classes }}"
-          aria-label="{{ block.settings.title | escape }}"
-          {{ block.shopify_attributes }}
+          data-padding-bottom="{{ block.settings.padding_bottom }}"
           style="--desktop-margin-top: {{ block.settings.desktop_margin_top }}px;"
         >
           {% if block.settings.content_position == 'content-top' %}
-            <!-- Conteúdo em cima, Imagem embaixo -->
-            <div class="editorial-categories__content" 
-              data-align-content="{{ block.settings.align_content_position }}">
+            <div
+              class="editorial-categories__content"
+              data-align-content="{{ block.settings.align_content_position }}"
+            >
               {% if block.settings.title %}
                 <h3 class="editorial-categories__title">
                   {{ block.settings.title }}
@@ -41,16 +33,17 @@
               {% endif %}
 
               {% if block.settings.cta_label %}
-                <span class="editorial-categories__cta">
+                <a href="{{ block.settings.link }}" class="editorial-categories__cta" role="button">
                   {{ block.settings.cta_label }}
-                   <img 
-                    src="{{ 'arrow-right-alt.svg' | asset_url }}" 
-                    alt="Arrow right icon"
-                    width="20" 
-                    height="20" 
+                  <img
+                    src="{{ 'arrow-right-alt.svg' | asset_url }}"
+                    alt=""
+                    width="20"
+                    height="20"
                     loading="lazy"
+                    aria-hidden="true"
                   >
-                </span>
+                </a>
               {% endif %}
             </div>
 
@@ -65,9 +58,7 @@
                 >
               {% endif %}
             </div>
-
           {% else %}
-            <!-- Imagem em cima, Conteúdo embaixo (padrão) -->
             <div class="editorial-categories__image-wrapper">
               {% if block.settings.image %}
                 <img
@@ -80,9 +71,10 @@
               {% endif %}
             </div>
 
-            <div class="editorial-categories__content"              
-             data-align-content="{{ block.settings.align_content_position }}">
-
+            <div
+              class="editorial-categories__content"
+              data-align-content="{{ block.settings.align_content_position }}"
+            >
               {% if block.settings.title %}
                 <h3 class="editorial-categories__title">
                   {{ block.settings.title }}
@@ -96,24 +88,26 @@
               {% endif %}
 
               {% if block.settings.cta_label %}
-                <span class="editorial-categories__cta">
+                <a href="{{ block.settings.link }}" class="editorial-categories__cta" role="button">
                   {{ block.settings.cta_label }}
-                   <img 
-                    src="{{ 'arrow-right-alt.svg' | asset_url }}" 
-                    alt="Arrow right icon"
-                    width="20" 
-                    height="20" 
+                  <img
+                    src="{{ 'arrow-right-alt.svg' | asset_url }}"
+                    alt=""
+                    width="20"
+                    height="20"
                     loading="lazy"
+                    aria-hidden="true"
                   >
-                </span>
+                </a>
               {% endif %}
             </div>
           {% endif %}
-        </a>
+        </article>
       {% endfor %}
     </div>
   </div>
 </section>
+
 
 {% schema %}
 {
@@ -121,14 +115,6 @@
   "tag": "section",
   "class": "section-editorial-categories",
   "max_blocks": 3,
-  "settings": [
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Cor de fundo",
-      "default": "#f5f5f5"
-    },
-  ],
   "blocks": [
     {
       "type": "category",
@@ -155,7 +141,7 @@
           ],
           "default": "image-top"
         },
-         {
+        {
           "type": "select",
           "id": "align_content_position",
           "label": "Alinhamento do conteúdo",
@@ -174,6 +160,12 @@
             }
           ],
           "default": "center"
+        },
+        {
+          "type": "checkbox",
+          "id": "padding_bottom",
+          "label": "Adicionar padding inferior extra",
+          "default": false
         },
         {
           "type": "text",
@@ -219,17 +211,16 @@
           "type": "category",
           "settings": {
             "title": "Rasteiras & Birkens",
-            "description": "A categoria de Sandália Rasteira da Sapatella é um verdadeiro paraíso para os amantes de conforto e estilo.",
             "cta_label": "Eu quero",
             "content_position": "image-top",
-            "desktop_margin_top": 0
+            "desktop_margin_top": 0,
+            "padding_bottom": true
           }
         },
         {
           "type": "category",
           "settings": {
             "title": "Sandálias",
-            "description": "",
             "cta_label": "Conferir",
             "content_position": "content-top",
             "desktop_margin_top": 64
@@ -239,7 +230,6 @@
           "type": "category",
           "settings": {
             "title": "Tênis",
-            "description": "Os tênis femininos se tornaram um item básico na moda e nos calçados do dia a dia.",
             "cta_label": "Conferir",
             "content_position": "image-top",
             "desktop_margin_top": 32
