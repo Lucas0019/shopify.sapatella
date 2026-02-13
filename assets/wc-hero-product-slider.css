@@ -87,6 +87,10 @@
   width: 100%;
 }
 
+.hero-product-slider-container .slider-arrow {
+  display: none;
+}
+
 .hero-product-slider-track-wrapper {
   overflow: hidden;
   width: 100%;
@@ -491,6 +495,10 @@
   }
   .hero-product-overlay-title {
     font-size: 2rem;
+  }
+
+  .hero-product-slider-container .slider-arrow {
+    display: flex;
   }
 
   .hero-product-image-wrapper {
